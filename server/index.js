@@ -4,7 +4,7 @@ const cors = require('cors')
 
 const app = express();
 
-app.use('/', require('./routes/authRoutes'))
+app.use('/', require('./routes/authRoutes')) // make the app use the endpoint
 
 const port = 8000;
 app.listen(port, () => console.log(`Server is running on port ${port}`))

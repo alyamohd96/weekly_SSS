@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import {useState} from 'react';
+import axios from 'axios';
 
 export default function Login() {
 
@@ -9,6 +10,7 @@ export default function Login() {
 
     const loginUser = (e) => {
         e.preventDefault()
+        axios.get('/')
     }
 
     return (
@@ -18,7 +20,7 @@ export default function Login() {
                 <input type='text' placeholder='enter email...' value={data.email} onChange={(e) => setData({...data, email: e.target.value})} />
                 <label>Password</label>
                 <input type='password' placeholder='enter password...' value={data.password} onChange={(e) => setData({...data, password: e.target.value})}/>
-                <button type='submit'>Submit</button>
+                <button type='submit'>Login</button>
             </form>
         </div>
     )
