@@ -60,6 +60,11 @@ const loginUser = async (req, res) => {
         if(match){
             res.json('passwords match');
         }
+        if(!match) {
+            res.json({
+                error: 'Passwords do not match'
+            });
+        }
     } catch (error) {
         console.log(error)
     };
