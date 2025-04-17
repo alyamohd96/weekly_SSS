@@ -28,23 +28,47 @@ const registerUser = async(req, res) => {
             return res.json({
                 error: 'Email is taken already'
             })
-        }
-
+        };
 
         const hashedPassword = await hashPassword(password)
         // create user in database
         const user = await User.create({
             name, email, password: hashedPassword
-        })
+        });
 
-        return res.json(user)
+        return res.json(user);
     } catch (error) {
         console.log(error)
-    }
+    };
 };
+
+// Login endpoint - POST
+const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // check is user exists
+        const user = await User.findOne({email});
+        if (!user) {
+            return res.json({
+                error: 'User does not exist'
+            });
+        }
+
+        // check if passwords match
+        const match = await comparePassword(password, user.password)
+        if(match){
+            res.json('passwords match');
+        }
+    } catch (error) {
+        console.log(error)
+    };
+};
+
 
 // export it
 module.exports = {
     test,
-    registerUser
+    registerUser,
+    loginUser
 };
