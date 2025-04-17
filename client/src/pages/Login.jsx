@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 export default function Login() {
 
@@ -8,9 +9,18 @@ export default function Login() {
         password: ''
     })
 
-    const loginUser = (e) => {
+    const loginUser = async (e) => {
         e.preventDefault()
-        axios.get('/')
+        const {email, password} = data
+        try {
+            const {data} = await axios.post('/login', {
+                email, 
+                password
+            })
+        }
+        catch (error) {
+
+        }
     }
 
     return (
