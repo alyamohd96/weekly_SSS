@@ -10,7 +10,11 @@ mongoose.connect(process.env.MONGO_URL)
 
 const app = express()
 
-app.use('/', require('./routes/authRoutes')) // make the app use the endpoint
+// middleware
+app.use(express.json())
+
+// declare the endpoints of the backend
+app.use('/', require('./routes/authRoutes')) 
 
 const port = 8000;
 app.listen(port, () => console.log(`Server is running on port ${port}`))
