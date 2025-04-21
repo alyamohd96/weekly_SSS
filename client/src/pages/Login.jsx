@@ -19,7 +19,7 @@ export default function Login() {
             const {data} = await axios.post('/login', {
                 email, 
                 password
-            });
+            },{ withCredentials: true });
             if (data.error) {
                 toast.error(data.error)
             } else {
