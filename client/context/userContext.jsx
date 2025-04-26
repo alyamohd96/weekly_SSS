@@ -8,6 +8,7 @@ export function UserContextProvider({children}) {
 
     const [user, setUser] = useState(null);
 
+    // calls the getProfile API each time it load the page
     useEffect( () => {
         if(!user) {
             axios.get('/profile').then(({data}) => {
